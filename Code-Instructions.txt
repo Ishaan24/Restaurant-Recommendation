@@ -1,0 +1,7 @@
+Our application basically involves around Python, Angular.js, Node.js, Tableau and RDS(MySQL DB on cloud). to run the application, please install Node.js on your local machine. 
+
+You can use https://nodejs.org/en/download/ to download Node.js to your local machine. After that, open Terminal(Mac) or command line(Windows), to go to the project's directory.
+
+After that, just type "node app.js" to run the Node.js server. You might have to install a few modules before running the application, to install those modules, just type "npm install moduleName" on command line. You will have to install mysql, python-shell and express-session. I am using the python-shell module to run my python script from Node.js.
+
+ Once the server is up and running, go to your browser and type localhost:3000 and press enter.
