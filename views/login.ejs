@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Restaurant Analysis </title>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+  <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/util.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/login.css">
+  <script src="angularjs/loginController.js"></script>
+  <script src="js/register.js"></script>
+
+  </head>
+  <body ng-app="myApp" ng-controller="loginController">
+   <div class="materialContainer">
+
+
+   <div class="box">
+
+      <div class="title">LOGIN</div>
+      <form>
+        <div ng-show="invalidemail" style="color:red">Invalid Email</div>
+      <div class="input">
+         <label for="name">Email</label>
+         <input type="text" name="email" ng-model="email" required>
+         <span class="spin"></span>
+      </div>
+      <div ng-show="invalidpassword" style="color:red">Invalid Password</div>
+      <div class="input">
+         <label for="pass">Password</label>
+         <input type="password" name="password" ng-model="password" required>
+         <span class="spin"></span>
+      </div>
+
+      <div class="button login">
+         <button ng-click="btn_login()"><span>Login</span> <i class="fa fa-check"></i></button>
+      </div>
+    </form>
+
+      <a href="" class="pass-forgot">Forgot your password?</a>
+
+   </div>
+
+
+   <div class="overbox">
+      <div class="material-button alt-2"><span class="shape"></span></div>
+
+      <div class="title">REGISTER</div>
+
+      <div class="input">
+         <label for="regname">Name</label>
+         <input type="text" name="regname" ng-model="regname" id="regname" required>
+         <span class="spin"></span>
+      </div>
+
+
+           <div class="input">
+         <label for="regpass">Email</label>
+         <input type="text" name="regpass" ng-model="regemail" id="regpass" required>
+         <span class="spin"></span>
+      </div>
+
+      <div class="input">
+         <label for="reregpass">Password</label>
+         <input type="password" name="reregpass" ng-model="regpassword" id="reregpass" required>
+         <span class="spin"></span>
+      </div>
+
+      <div class="button" ng-click="btn_register()">
+         <button><span>Register</span></button>
+      </div>
+
+
+   </div>
+
+</div>
+
+
+
+
+   
+
+</div>
+
+  </body>
+
+</html>

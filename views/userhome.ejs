@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+   <style>
+  body {
+    background-image: url(../images/home3.jpeg);
+    background-attachment: fixed;
+}
+.headright{
+  float:right;
+  display:inline-block;
+}
+.cha{
+  background-color: #8E1D41;
+  color:white;
+}
+  </style> 
+    <title> Restaurant Analysis </title>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="angularjs/userController.js"></script>
+  </head>
+  <body ng-app="myApp" ng-controller="userController">
+    
+  
+  <div class="header">  
+  <nav class="navbar navbar-inverse">
+  <div class="cha">  
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <img src="images/logo.jpeg" height="50" width="80"></img>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/userloginhome">Home</a></li>
+      <li><a href="/top-rated">Top Rated</a></li>
+      <li><a href="/most-voted">Most Voted</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+      <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </div>
+</div>
+</nav>
+</div>
+
+
+<div class="container-fluid" style="text-align:left;">
+
+    
+
+    <div class="col-md-6">
+        <% var obj=obj; %>
+
+        <% if(restaurants == null){ %>
+            Sorry no restaurants to display. We have nothing to recommend yet. 
+        <% }else { %>
+        <!-- pagination -->
+        <ul class="list-group">
+            <% restaurants.forEach( function( restaurant ) { %>
+            <li class="list-group-item">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div class="headright">
+                  <% if(restaurant.Aggregate_rating >= 4){ %>
+                  <h3><span class="label label-success"><%= restaurant.Aggregate_rating %></span></h3>
+                  <% } else if(restaurant.Aggregate_rating <= 3){ %>
+                  <h3><span class="label label-danger"><%= restaurant.Aggregate_rating %></span></h3>
+                  <% }else { %>
+                   <h3><span class="label label-warning"><%= restaurant.Aggregate_rating %></span></h3>
+                   <% }%>
+                   <i class="fa fa-thumbs-o-up" style="font-size:18px"></i> <%= restaurant.Votes %> votes <br>
+                  </div>
+                </strong><h4> <span style="color:#cb202d;font-size:24px;"><%= restaurant.Restaurant_Name %></span></h4></strong>
+
+                <strong><%= restaurant.City %></strong> <br />
+
+                 <%= restaurant.Address %>, <%= restaurant.City %> <br>
+                
+                </div>
+
+
+              <div class="panel-body">
+                <strong>Cusines: </strong> <%= restaurant.Cuisine %> <br>
+                <strong>Cost for two: </strong> <i class="fa fa-rupee" style="font-size:14px"></i> <%= restaurant.Average_Cost_for_two %> <br>
+                <% if(restaurant.preferred_delivery == 1){ %>
+                <strong>Has Online Delivery: </strong> <i class="fa fa-truck" style="font-size:14px"></i> No <br>
+                <% }else { %>
+                <strong>Has Online Delivery: </strong> <i class="fa fa-truck" style="font-size:14px"></i> Yes <br>
+                <% }%>
+                <% if(restaurant.preferred_table == 1){ %>
+                <strong>Has Table Booking: </strong> <span class="glyphicon glyphicon-cutlery" style="font-size:14px"></span> No <br>
+                <% }else { %>
+                <strong>Has Table Booking: </strong> <span class="glyphicon glyphicon-cutlery" style="font-size:14px"></span> Yes <br>
+                <% }%>
+              </div>
+              </div>
+                
+                
+            </li>
+            <% }) %>
+        </ul>
+
+        <!-- pagination -->
+        <% }%>
+
+    </div>
+
+    <div class="col-md-6">
+      <div id="map" style="width:100%;height:800px;"></div>
+      
+    </div>
+</div>
+
+<script>
+function myMap() {
+  var index=0;
+  var num=["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"];
+var mapProp= {
+    center:new google.maps.LatLng('<%= restaurants[0].Latitude %>','<%= restaurants[0].Longitude %>'),
+    zoom:13,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+};
+var map=new google.maps.Map(document.getElementById("map"),mapProp);
+<%for (var i=0;i<restaurants.length;i++){%>
+var marker = new google.maps.Marker({
+          position: new google.maps.LatLng('<%= restaurants[i].Latitude %>','<%= restaurants[i].Longitude %>'),
+          map: map,
+          animation: google.maps.Animation.DROP,
+          title: '<%= restaurants[i].Restaurant_Name %>',
+          label: num[index++]
+        });
+<% } %>             
+
+marker.setMap(map);
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZEyjChcHBOHEWWF9gjt6EQHyO8SiNEVs&callback=myMap"></script>
+
+
+</body>
+</html>

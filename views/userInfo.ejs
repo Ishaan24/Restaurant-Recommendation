@@ -1,0 +1,346 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+   <style>
+   .header {
+  background-color: lightblue;
+}
+ body {
+    background-image: url(../images/home3.jpeg);
+}
+.cha{
+  background-color: #8E1D41;
+  color:white;
+}
+  </style> 
+    <title> Restaurant Analysis </title>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="angularjs/userController.js"></script>
+  </head>
+  <body ng-app="myApp" ng-controller="userController">
+    
+  
+   <div class="header">  
+  <nav class="navbar navbar-inverse">
+  <div class="cha">  
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <img src="images/logo.jpeg" height="50" width="80"></img>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/userhome">Home</a></li>
+      <li><a href="/top-rated">Top Rated</a></li>
+      <li><a href="/most-voted">Most Voted</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+      <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </div>
+</div>
+</nav>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span> Tell us about yourself!</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="locatiion"><span class="glyphicon glyphicon-pushpin"></span> Location</label>
+              <!--<input type="text" class="form-control" id="location" ng-model="userLocation" placeholder="Enter Location" required> -->
+              <select class="form-control" id="location" ng-model="userLocation">
+                <option value="agra">Agra</option>
+                <option value="ahmedabad">Ahmedabad</option>
+                <option value="Allahabad">Allahabad</option>
+                <option value="Aurangabad">Aurangabad</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Bhopal">Bhopal</option>
+                <option value="Bhubaneshwar">Bhubaneshwar</option>
+                <option value="Chandigarh">Chandigarh</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Coimbatore">Coimbatore</option>
+                <option value="Faridabad">Faridabad</option>
+                <option value="Ghaziabad">Ghaziabad</option>
+                <option value="Goa">Goa</option>
+                <option value="Gurgaon">Gurgaon</option>
+                <option value="Guwahati">Guwahati</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Indore">Indore</option>
+                <option value="Jaipur">Jaipur</option>
+                <option value="Kanpur">Kanpur</option>
+                <option value="Kochi">Kochi</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Lucknow">Lucknow</option>
+                <option value="Ludhiana">Ludhiana</option>
+                <option value="Mangalore">Mangalore</option>
+                <option value="Mohali">Mohali</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Mysore">Mysore</option>
+                <option value="Nagpur">Nagpur</option>
+                <option value="Nashik">Nashik</option>
+                <option value="New Delhi">New Delhi</option>
+                <option value="Noida">Noida</option>
+                <option value="Panchkula">Panchkula</option>
+                <option value="Patna">Patna</option>
+                <option value="Puducherry">Puducherry</option>
+                <option value="Pune">Pune</option>
+                <option value="Ranchi">Ranchi</option>
+                <option value="Secunderabad">Secunderabad</option>
+                <option value="Surat">Surat</option>
+                <option value="Vadodara">Vadodara</option>
+                <option value="Varanasi">Varanasi</option>
+                <option value="Vizag">Vizag</option>
+
+            </select>
+            </div>
+            <div class="form-group">
+              <label for="price"><i class="fa fa-rupee"></i> Preferred cost for two</label>
+              <input type="text" class="form-control" id="price" ng-model="price" placeholder="Enter price" required>
+            </div>
+
+          <label for="cuisine"><span class="glyphicon glyphicon-cutlery"></span> Preferred Cuisines</label> 
+          <div class="row">
+            <div class="col-md-6">
+            <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" name="cuisine" ng-model="cuisine1">
+            <label class="form-check-label" for="defaultCheck1">
+              Afghani
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" name="cuisine" ng-model="cuisine2">
+            <label class="form-check-label" for="defaultCheck2">
+              American
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck3" name="cuisine" ng-model="Arabian">
+            <label class="form-check-label" for="defaultCheck3">
+              Arabian
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck4" name="cuisine" ng-model="cuisine3">
+            <label class="form-check-label" for="defaultCheck4">
+              Asian
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck5" name="cuisine" ng-model="bakery">
+            <label class="form-check-label" for="defaultCheck5">
+              Bakery
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck6" name="cuisine" ng-model="bengali">
+            <label class="form-check-label" for="defaultCheck6">
+              Bengali
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck7" name="cuisine" ng-model="cafe">
+            <label class="form-check-label" for="defaultCheck7">
+              Cafe
+            </label>
+        </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck8" name="cuisine" ng-model="cuisine4">
+            <label class="form-check-label" for="defaultCheck8">
+              Chinese
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck9" name="cuisine" ng-model="cuisine5">
+            <label class="form-check-label" for="defaultCheck9">
+              Continental
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck10" name="cuisine" ng-model="cuisine6">
+            <label class="form-check-label" for="defaultCheck10">
+              Desserts
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck11" name="cuisine" ng-model="cuisine7">
+            <label class="form-check-label" for="defaultCheck11">
+              European
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck12" name="cuisine" ng-model="cuisine8">
+            <label class="form-check-label" for="defaultCheck12">
+              Fast Food
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck13" name="cuisine" ng-model="hyderabadi">
+            <label class="form-check-label" for="defaultCheck13">
+              Hyderabadi
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck14" name="cuisine" ng-model="cuisine9">
+            <label class="form-check-label" for="defaultCheck14">
+              Italian
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck15" name="cuisine" ng-model="cuisine10">
+            <label class="form-check-label" for="defaultCheck15">
+              Japanese
+            </label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck16" name="cuisine" ng-model="lebanese">
+            <label class="form-check-label" for="defaultCheck16">
+              Lebanese
+            </label>
+        </div>
+
+
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck17" name="cuisine" ng-model="cuisine11">
+            <label class="form-check-label" for="defaultCheck17">
+              Malaysian
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck18" name="cuisine" ng-model="cuisine12">
+            <label class="form-check-label" for="defaultCheck18">
+              Mexican
+            </label>
+        </div>
+
+
+      <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck19" name="cuisine" ng-model="mediterranean">
+            <label class="form-check-label" for="defaultCheck19">
+              Mediterranean
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck20" name="cuisine" ng-model="cuisine13">
+            <label class="form-check-label" for="defaultCheck20">
+              Mughlai
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck21" name="cuisine" ng-model="cuisine14">
+            <label class="form-check-label" for="defaultCheck21">
+              Nepaleese
+            </label>
+        </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck22" name="cuisine" ng-model="cuisine15">
+            <label class="form-check-label" for="defaultCheck22">
+              North Indian
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck23" name="cuisine" ng-model="cuisine16">
+            <label class="form-check-label" for="defaultCheck23">
+              Pakistani
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck24" name="cuisine" ng-model="cuisine17">
+            <label class="form-check-label" for="defaultCheck24">
+              Rajasthani
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck25" name="cuisine" ng-model="cuisine18">
+            <label class="form-check-label" for="defaultCheck25">
+              Sea Food
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck26" name="cuisine" ng-model="cuisine19">
+            <label class="form-check-label" for="defaultCheck26">
+              South Indian
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck27" name="cuisine" ng-model="cuisine20">
+            <label class="form-check-label" for="defaultCheck27">
+              Street Food
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck28" name="cuisine" ng-model="cuisine21">
+            <label class="form-check-label" for="defaultCheck28">
+              Thai
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck29" name="cuisine" ng-model="cuisine22">
+            <label class="form-check-label" for="defaultCheck29">
+              Turkish
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck30" name="cuisine" ng-model="cuisine23">
+            <label class="form-check-label" for="defaultCheck30">
+              Vietnamese
+            </label>
+        </div>
+      </div>
+    </div>
+<br />
+    <div class="form-group">
+              <label for="table"><i class="fa fa-table"></i> Has Table?</label>
+              <input type="radio" name="table" value="yes" ng-model="table1"> Yes
+              <input type="radio" name="table" value="no" ng-model="table2" > No
+    </div>
+
+   <div class="form-group">
+              <label for="delivery"><i class="fa fa-truck"></i> Has Online Delivery?</label>
+              <input type="radio" name="delivery" value="yes" ng-model="online1"> Yes
+              <input type="radio" name="delivery" value="no" ng-model="online2"> No
+    </div>
+            
+
+
+              <button type="submit" id="btn1" class="btn btn-success btn-block" ng-click="btn_preferences()"><span class="glyphicon glyphicon-ok"></span> Submit</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<h2>Hello,<%= firstName %></h2>
+<script type="text/javascript">
+    $(window).on('load',function(){
+        $('#myModal').modal('show');
+    });
+</script>
+</body>
+</html>
